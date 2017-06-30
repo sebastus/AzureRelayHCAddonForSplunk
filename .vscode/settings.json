@@ -1,0 +1,61 @@
+{
+    "deploy": {
+        "openOutputOnDeploy": false,
+        "showPopupOnSuccess": false,
+        "packages": [
+            {
+                "name": "root",
+                "deployOnSave": "saveAndPackage",
+                "files": [
+                    "README.md",
+                    "LICENSE"
+                ]
+            },
+            {
+                "name": "README",
+                "deployOnSave": "arhc",
+                "files": [
+                    "README/inputs.conf.spec"
+                ]
+            },
+            {
+                "name": "bin",
+                "deployOnSave": "arhc",
+                "files": [
+                    "bin/*.js",
+                    "bin/*.json",
+                    "bin/*.cmd",
+                    "bin/*.sh"
+                ]
+            },
+            {
+                "name": "default",
+                "deployOnSave": "arhc",
+                "files": [
+                    "default/app.conf",
+                    "default/inputs.conf"
+                ]
+            }
+        ],
+        "targets": [
+            {
+                "type": "local",
+                "name": "arhc",
+                "dir": "Deployment/TA-AzureRelayHC"
+            },
+            {
+                "type": "app",
+                "name": "package",
+                "app": "Deployment/package.cmd"
+            },
+            {
+                "type": "batch",
+                "name": "saveAndPackage",
+                "targets": [
+                    "arhc",
+                    "package"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "azure_relay_hc_addon_for_splunk",
+  "version": "1.0.0",
+  "description": "accept messages from an azure service bus relay hybrid connection, send messages as events to Splunk",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "splunk-sdk": ">=1.4.0",
+    "hyco-ws": "1.0.5",
+    "underscore":"^1.8.3"
+  },
+  "author": "golive@microsoft.com",
+  "license": "MIT"
+}
