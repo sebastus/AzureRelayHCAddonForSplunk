@@ -12,8 +12,7 @@ The configuration settings for this add-on are:
 * SASKeyRuleName
 * SASKeyValue
 
-These values are described in steps 1 and 2 of this [page]((https://docs.microsoft.com/en-us/azure/service-bus-relay/relay-hybrid-connections-dotnet-get-started)
-).
+These values are described in steps 1 and 2 of this [page](https://docs.microsoft.com/en-us/azure/service-bus-relay/relay-hybrid-connections-dotnet-get-started).
 
 # Support
 
