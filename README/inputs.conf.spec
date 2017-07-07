@@ -1,7 +1,7 @@
 [azure_relay_hc://<value>]
 *AzureRelayHCAddonForSPlunk
 
-AzureRelayNameSpace = <value>
+AzureRelayNamespace = <value>
 AzureRelayPath = <value>
 SASKeyRuleName = <value>
 SASKeyValue = <value>

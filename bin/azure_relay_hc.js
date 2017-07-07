@@ -44,10 +44,10 @@
     // getScheme method returns introspection scheme
     exports.getScheme = function () {
 
-        var scheme = new Scheme("Azure Activity Log");
+        var scheme = new Scheme("Azure Relay Hybrid Connector");
 
         // scheme properties
-        scheme.description = "my modular input";
+        scheme.description = "Receives various metrics and logs from Microsoft Azure via an Azure Relay Hybrid Connection.";
         scheme.useExternalValidation = true;  // if true, must define validateInput method
         scheme.useSingleInstance = false;      // if true, all instances of mod input passed to
         //   a single script instance; if false, user 
@@ -105,12 +105,22 @@
     // streamEvents streams the events to Splunk Enterprise
     exports.streamEvents = function (name, singleInput, eventWriter, done) {
 
+        // modular input logic goes here        
+        var loggerId = name + ' ' + uuid();
+
+        Logger.debug(loggerId, 'Entered streamEvents');
+
         var quiescenceTimer;
 
         var ns = singleInput.AzureRelayNamespace + ".servicebus.windows.net";
         var path = singleInput.AzureRelayPath;
-        var keyrule = singleInput.SASKeyRule;
+        var keyrule = singleInput.SASKeyRuleName;
         var key = singleInput.SASKeyValue;
+
+        Logger.debug(loggerId, "Input parameters ns: " + ns);
+        Logger.debug(loggerId, "Input parameters path: " + path);
+        Logger.debug(loggerId, "Input parameters keyrule: " + keyrule);
+        Logger.debug(loggerId, "Input parameters key: ********");
 
         function tickTock() {
             setTimeout(function () {
@@ -134,11 +144,6 @@
             }
             quiescenceTimer = setTimeout(disconnectFunction, timeToWait * 1000);
         }
-
-        // modular input logic goes here        
-        var loggerId = name + ' ' + uuid();
-
-        Logger.debug(loggerId, 'Entered streamEvents');
 
         var errorFound = false;
         var wss = WebSocket.createRelayedServer(
@@ -223,7 +228,14 @@
         //tickTock();
 
         wss.on('error', function (err) {
-            Logger.error(loggerId, 'error' + err);
+            Logger.error(loggerId, 'WSS error: ' + err);
+
+            // tell splunk we're done.
+            done(err);
+
+            // we had an error; die
+            return;
+
         });
 
     };

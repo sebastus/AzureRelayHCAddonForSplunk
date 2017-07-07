@@ -1,1 +1,1 @@
-@"%SPLUNK_HOME%"\bin\splunk cmd node "%~dp0\index.js" %*
+@"%SPLUNK_HOME%"\bin\splunk cmd node "%~dp0\azure_relay_hc.js" %*

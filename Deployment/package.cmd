@@ -12,4 +12,4 @@ cd Deployment
 7z a -ttar temp\%version%.tar TA-AzureRelayHC\README.md
 copy temp\%version%.tar temp\%version%.spl
 7z a -tgzip ..\packages\%version%.spl temp\%version%.spl
-
+exit
