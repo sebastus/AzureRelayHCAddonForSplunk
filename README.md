@@ -6,7 +6,11 @@ It communicates with an Azure Function via an Azure Relay Hybrid Connection. Eac
 
 The Azure Function is documented [here](https://github.com/sebastus/AzureFunctionForSplunk).
 
-The configuration settings for this add-on are:
+## Installation and Configuration
+
+To install, download the SPL from the packages folder. In Splunk, in Manage Apps, install from this file. Then in Settings/Data Inputs create a new instance of Azure Relay HC.
+
+The configuration settings for this data input are:
 * AzureRelayNamespace
 * AzureRelayPath
 * SASKeyRuleName
