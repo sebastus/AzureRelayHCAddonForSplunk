@@ -173,8 +173,9 @@
                     var countOfEvents = events.length;
                     Logger.debug(loggerId, String.format("there are {0} events in the array", countOfEvents));
 
+                    var eventsIndexed = 0;
                     for (index = 0; index < countOfEvents; index++) {
-                        Logger.debug(loggerId, String.format("Event {0} is: {1}", index, JSON.stringify(events[index])));
+                        // Logger.debug(loggerId, String.format("Event {0} is: {1}", index, JSON.stringify(events[index])));
 
                         clearMessageInstance = events[index];
                         var curEvent = new Event({
@@ -184,7 +185,8 @@
                         });
                         try {
                             eventWriter.writeEvent(curEvent);
-                            Logger.debug(loggerId, String.format('streamEvents.messageHandler wrote an event'));
+                            eventsIndexed++;
+                            //Logger.debug(loggerId, String.format('streamEvents.messageHandler wrote an event'));
                         }
                         catch (e) {
                             errorFound = true; // Make sure we stop streaming if there's an error at any point
@@ -203,6 +205,7 @@
                         }
 
                     }
+                    Logger.debug(loggerId, String.format('streamEvents.messageHandler wrote {0} events.', eventsIndexed));
 
                     setMyTimer(false);
                 };

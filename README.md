@@ -8,7 +8,7 @@ The Azure Function is documented [here](https://github.com/sebastus/AzureFunctio
 
 ## Installation and Configuration
 
-To install, download the SPL from the packages folder. In Splunk, in Manage Apps, install from this file. Then in Settings/Data Inputs create a new instance of Azure Relay HC.
+To install, download the SPL from the packages folder. In Splunk, in Manage Apps, install from this file. Find the TA folder of the add-on ($SPLUNK_HOME/etc/apps/TA-azure_relay_hc/bin) and from within that folder (you should see package.json file) execute "npm install". Stop/start the add-on in Splunk, then in Settings/Data Inputs create a new instance of Azure Relay HC.
 
 The configuration settings for this data input are:
 * AzureRelayNamespace
